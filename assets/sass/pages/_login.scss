@@ -1,32 +1,36 @@
 #loginForm{
-    margin-top: 200px;
+        margin-top: 150px;
+        border: 1px solid #ccc;
+        padding: 16px;
+        border-radius: 10px;
 
-    h1{
-        color:#5f992c;
 
-    }
+        h1{
+                color:#5f992c;
 
-    .btn-danger{
-        background-color: forestgreen;
-        border: none;
-        height: 45px;
-        width: 90px;
-        margin-bottom: 20px;
-        margin-top: 10px;
-
-        a{
-            color: white;
         }
-    }
 
-    p{
-        margin-top: 20px;
-        font-size: 18px;
+        .btn-danger{
+                background-color: forestgreen;
+                border: none;
+                height: 45px;
+                width: 90px;
+                margin-bottom: 20px;
+                margin-top: 10px;
 
-        a{
-            color: black;
+                a{
+                        color: white;
+                }
         }
-    }
+
+        p{
+                margin-top: 20px;
+                font-size: 18px;
+
+                a{
+                        color: black;
+                }
+        }
 }
 
 

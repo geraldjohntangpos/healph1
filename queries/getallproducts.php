@@ -2,9 +2,9 @@
 
 	include 'connection.php';
 		$sql = "SELECT * FROM product WHERE STATUS = 'ACTIVE'";
-		
+
 		$retrieve = $conn->query($sql)->fetchAll();
-		
+
 		if($retrieve) {
 			foreach($retrieve as $row) {
 				$name = $row['NAME'];
@@ -19,5 +19,5 @@
 				<?php
 			}
 		}
-	
+
 ?>

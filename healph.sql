@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2016 at 10:08 AM
+-- Generation Time: Sep 03, 2016 at 06:14 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -30,29 +30,24 @@ CREATE TABLE IF NOT EXISTS `account` (
   `ACCT_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(30) NOT NULL,
   `PASSWORD` varchar(30) NOT NULL,
-  `STATUS` varchar(30) NOT NULL,
+  `STATUS` varchar(30) NOT NULL DEFAULT 'ACTIVE',
   `TYPE` varchar(10) NOT NULL,
   PRIMARY KEY (`ACCT_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`ACCT_ID`, `USERNAME`, `PASSWORD`, `STATUS`, `TYPE`) VALUES
-(1, 'geraldjohnt', 'geraldgwapo', '', 'Client'),
-(3, 'bayronon', 'pakers', '', 'Client'),
-(4, 'kaylie', 'buangko', '', 'Client'),
-(5, 'ocampokaga', 'kagako', '', 'Client'),
-(6, 'admin01', 'stevejobs', '', 'Admin'),
-(7, 'admin02', 'billgates', '', 'Admin'),
-(8, 'yeah1', 'abcd12345', '', 'Client'),
-(9, 'pakersss', 'akoako', '', 'Healer'),
-(10, 'pakersss', 'akoako', '', 'Healer'),
-(11, 'pakersss', 'akoako', '', 'Healer'),
-(13, 'kylekun', 'kikiki', '', 'Healer'),
-(14, 'itangboy', 'itang', '', 'Healer'),
-(15, 'open7', 'perez', '', 'Client');
+(1, 'admin01', 'anjon', 'ACTIVE', 'Admin'),
+(2, 'admin02', 'liam', 'ACTIVE', 'Admin'),
+(3, 'admin03', 'gerald', 'ACTIVE', 'Admin'),
+(4, 'mangkanor', 'mang12', 'ACTIVE', 'Healer'),
+(5, 'bayron', 'pakers', 'INACTIVE', 'Healer'),
+(6, 'nick01', 'nic01', 'ACTIVE', 'Client'),
+(7, 'healer1', 'healer1', 'ACTIVE', 'Healer'),
+(8, 'robynpacers', 'lovwiablins', 'ACTIVE', 'Client');
 
 -- --------------------------------------------------------
 
@@ -66,15 +61,16 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `FIRSTNAME` varchar(30) NOT NULL,
   `LASTNAME` varchar(30) NOT NULL,
   PRIMARY KEY (`ADMIN_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`ADMIN_ID`, `ACCT_ID`, `FIRSTNAME`, `LASTNAME`) VALUES
-(1, 6, 'Gerald John', 'Tangpos'),
-(2, 7, 'John William', 'Ocampo');
+(1, 1, 'Anjon Franz', 'Perez'),
+(2, 2, 'John William', 'Ocampo'),
+(3, 3, 'Gerald John', 'Tangpos');
 
 -- --------------------------------------------------------
 
@@ -84,12 +80,41 @@ INSERT INTO `admin` (`ADMIN_ID`, `ACCT_ID`, `FIRSTNAME`, `LASTNAME`) VALUES
 
 CREATE TABLE IF NOT EXISTS `appointment` (
   `APPOINTMENT_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `SCHED_ID` int(11) NOT NULL,
-  `APPOINTMENT_DATE` varchar(30) NOT NULL,
+  `HEALER_ID` int(11) NOT NULL,
+  `DATEADDED` varchar(30) NOT NULL,
   `CLIENT_ID` int(11) NOT NULL,
-  `STATUS` varchar(100) NOT NULL,
+  `APPOINTEDDATE` varchar(30) NOT NULL,
+  `FEEDBACK` varchar(3000) NOT NULL,
+  `STATUS` varchar(100) NOT NULL DEFAULT 'ACTIVE',
+  `DATECONFIRMED` varchar(20) NOT NULL,
   PRIMARY KEY (`APPOINTMENT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE IF NOT EXISTS `booking` (
+  `BOOKING_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CLIENT_ID` int(11) NOT NULL,
+  `HEALER_ID` int(11) NOT NULL,
+  `SERVICE_ID` int(11) NOT NULL,
+  `DATEADDED` varchar(20) NOT NULL,
+  `BOOKINGDATE` varchar(20) NOT NULL,
+  `FEEDBACK` varchar(3000) NOT NULL,
+  `STATUS` varchar(15) NOT NULL DEFAULT 'ACTIVE',
+  `DATECONFIRMED` varchar(20) NOT NULL,
+  PRIMARY KEY (`BOOKING_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`BOOKING_ID`, `CLIENT_ID`, `HEALER_ID`, `SERVICE_ID`, `DATEADDED`, `BOOKINGDATE`, `FEEDBACK`, `STATUS`, `DATECONFIRMED`) VALUES
+(3, 6, 7, 6, '2016-08-31 03:54:40', '', '', 'ACTIVE', '');
 
 -- --------------------------------------------------------
 
@@ -106,19 +131,15 @@ CREATE TABLE IF NOT EXISTS `client` (
   `EMAIL_ADDRESS` varchar(30) NOT NULL,
   `MOBILE` varchar(15) NOT NULL,
   PRIMARY KEY (`CLIENT_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `client`
 --
 
 INSERT INTO `client` (`CLIENT_ID`, `ACCT_ID`, `FIRSTNAME`, `LASTNAME`, `ADDRESS`, `EMAIL_ADDRESS`, `MOBILE`) VALUES
-(1, 1, 'Gerald John', 'Tangpos', '', 'geraldjohnt@gmail.com', '09254669851'),
-(3, 3, 'Byron', 'Pacres', '', 'robynpacers@gmail.com', '9382839899'),
-(4, 4, 'Kyle', 'Cabradilla', '', 'kaylie@gmail.com', '9382839289'),
-(5, 5, 'John William', 'Ocampo', '', 'kaga@gmail.com', '9382938298'),
-(6, 8, 'Gerald', 'Tangpos', '', 'etagpos@email', '090807060578'),
-(7, 15, 'Dsad', 'Ada', '', 'eeee@yahoo.com', '09229712475');
+(1, 6, 'Nick', 'Carter', '', 'nickcarter@gmail.com', '09876543212'),
+(2, 8, 'Byron', 'Pacres', '', 'robynpacers@gmail.com', '09231392487');
 
 -- --------------------------------------------------------
 
@@ -128,30 +149,27 @@ INSERT INTO `client` (`CLIENT_ID`, `ACCT_ID`, `FIRSTNAME`, `LASTNAME`, `ADDRESS`
 
 CREATE TABLE IF NOT EXISTS `client_feedback` (
   `FEEDBACK_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `RATINGS` int(11) NOT NULL,
-  `COMMENT` varchar(1000) NOT NULL,
+  `COMMENT` varchar(32000) NOT NULL,
   `CLIENT_ID` int(11) NOT NULL,
   `LABEL` varchar(20) NOT NULL,
   `LABEL_ID` int(11) NOT NULL,
   `DATEADDED` varchar(30) NOT NULL,
   PRIMARY KEY (`FEEDBACK_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `client_feedback`
 --
 
-INSERT INTO `client_feedback` (`FEEDBACK_ID`, `RATINGS`, `COMMENT`, `CLIENT_ID`, `LABEL`, `LABEL_ID`, `DATEADDED`) VALUES
-(1, 0, 'skdjf', 3, 'healer', 14, '2016-08-04 18:50:38'),
-(6, 0, 'This is good :D', 3, 'method', 4, '2016-08-05 03:52:14'),
-(7, 0, 'WOw! Great :D', 3, 'method', 8, '2016-08-05 03:53:51'),
-(8, 0, 'Cool!', 3, 'method', 7, '2016-08-05 03:54:52'),
-(9, 0, 'Hihi', 3, 'product', 3, '2016-08-05 04:26:12'),
-(10, 0, 'Nice', 1, 'method', 7, '2016-08-05 04:37:03'),
-(11, 0, 'Buang ka.', 1, 'healer', 13, '2016-08-05 04:40:08'),
-(12, 0, 'Buang buang ka.', 3, 'healer', 13, '2016-08-05 04:40:36'),
-(13, 0, 'This method is so good.', 3, 'method', 5, '2016-08-05 16:53:51'),
-(14, 0, 'Louya way comment.', 3, 'healer', 11, '2016-08-05 16:54:13');
+INSERT INTO `client_feedback` (`FEEDBACK_ID`, `COMMENT`, `CLIENT_ID`, `LABEL`, `LABEL_ID`, `DATEADDED`) VALUES
+(1, 'Kusog ne cya maayu ne !', 1, 'method', 6, '2016-08-31 03:54:36'),
+(2, '$_GET[&#39;x&#39;]', 1, 'healer', 7, '2016-09-02 01:19:41'),
+(3, '$_POST[&#39;df&#39;];', 1, 'healer', 7, '2016-09-02 02:37:04'),
+(4, 'sddlfkieowksdjf asldf s ]  ksldfj', 1, 'healer', 7, '2016-09-02 02:37:35'),
+(5, 'kslf  sdf', 1, 'healer', 7, '2016-09-02 02:37:44'),
+(6, 'lksdf', 1, 'healer', 7, '2016-09-02 02:37:51'),
+(7, 'alert(&#34;You are hacked&#34;);', 1, 'healer', 7, '2016-09-02 02:39:05'),
+(8, ';aslkdfj  ', 1, 'healer', 7, '2016-09-02 02:39:47');
 
 -- --------------------------------------------------------
 
@@ -161,14 +179,38 @@ INSERT INTO `client_feedback` (`FEEDBACK_ID`, `RATINGS`, `COMMENT`, `CLIENT_ID`,
 
 CREATE TABLE IF NOT EXISTS `clinic_schedule` (
   `SCHED_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `DAYS` varchar(30) NOT NULL,
-  `TIME_START` varchar(20) NOT NULL,
-  `TIME_END` varchar(20) NOT NULL,
-  `CAPACITY` int(11) NOT NULL,
-  `STATUS` varchar(100) NOT NULL,
-  `HEALER_ID` int(11) NOT NULL,
+  `TIME` varchar(20) NOT NULL,
   PRIMARY KEY (`SCHED_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+
+--
+-- Dumping data for table `clinic_schedule`
+--
+
+INSERT INTO `clinic_schedule` (`SCHED_ID`, `TIME`) VALUES
+(1, '8:00 AM - 9:00 AM'),
+(2, '9:00 AM - 10:00 AM'),
+(3, '11:00 AM - 12:00 NN'),
+(4, '12:00 NN - 1:00 PM'),
+(5, '1:00 PM - 2:00 PM'),
+(6, '2:00 PM - 3:00 PM'),
+(7, '3:00 PM - 4:00 PM'),
+(8, '4:00 PM - 5:00 PM'),
+(9, '5:00 PM - 6:00 PM'),
+(10, '6:00 PM - 7:00 PM'),
+(11, '7:00 PM - 8:00 PM'),
+(12, '8:00 PM - 9:00 PM'),
+(13, '9:00 PM - 10:00 PM'),
+(14, '10:00 PM - 11:00 PM'),
+(15, '11:00 PM - 12:00 NN'),
+(16, '12:00 NN - 1:00 AM'),
+(17, '1:00 AM - 2:00 AM'),
+(18, '2:00 AM - 3:00 AM'),
+(19, '3:00 AM - 4:00 AM'),
+(20, '4:00 AM - 5:00 AM'),
+(21, '5:00 AM - 6:00 AM'),
+(22, '6:00 AM - 7:00 AM'),
+(23, '7:00 AM - 8:00 AM');
 
 -- --------------------------------------------------------
 
@@ -181,27 +223,82 @@ CREATE TABLE IF NOT EXISTS `healer` (
   `ACCT_ID` int(11) NOT NULL,
   `FIRSTNAME` varchar(30) NOT NULL,
   `LASTNAME` varchar(30) NOT NULL,
-  `ADDRESS` varchar(50) NOT NULL,
+  `ADDRESS` varchar(200) NOT NULL,
   `CONTACT` varchar(30) NOT NULL,
   `EMAIL_ADDRESS` varchar(45) NOT NULL,
-  `IMAGE` varchar(60) NOT NULL,
-  `LATITUDE` decimal(10,0) NOT NULL,
-  `LONGITUDE` decimal(10,0) NOT NULL,
+  `LATITUDE` varchar(50) NOT NULL,
+  `LONGITUDE` varchar(50) NOT NULL,
   `DETAILS` varchar(1000) NOT NULL,
-  `PICTURE` varchar(50) NOT NULL,
+  `PICTURE` varchar(50) NOT NULL DEFAULT 'face.jpg',
+  `CLINICHOURS` varchar(200) NOT NULL,
+  `DAILYLIMIT` int(11) NOT NULL,
   `RATE` decimal(5,1) NOT NULL,
   `STATUS` varchar(15) NOT NULL DEFAULT 'ACTIVE',
   PRIMARY KEY (`HEALER_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `healer`
 --
 
-INSERT INTO `healer` (`HEALER_ID`, `ACCT_ID`, `FIRSTNAME`, `LASTNAME`, `ADDRESS`, `CONTACT`, `EMAIL_ADDRESS`, `IMAGE`, `LATITUDE`, `LONGITUDE`, `DETAILS`, `PICTURE`, `RATE`, `STATUS`) VALUES
-(1, 11, 'Byron', 'Pacres', '', '09282839288', 'babytarts@gmail.com', '', '0', '0', '', 'face.jpg', '3.3', 'ACTIVE'),
-(3, 13, 'Kyle', 'Cabradilla', '', '09382838277', 'kylekun@yahoo.com', '', '0', '0', '', 'face.jpg', '2.1', 'ACTIVE'),
-(4, 14, 'Raymart', 'Itang', '', '09382837399', 'itang@gmail.com', '', '0', '0', '', 'face.jpg', '5.0', 'ACTIVE');
+INSERT INTO `healer` (`HEALER_ID`, `ACCT_ID`, `FIRSTNAME`, `LASTNAME`, `ADDRESS`, `CONTACT`, `EMAIL_ADDRESS`, `LATITUDE`, `LONGITUDE`, `DETAILS`, `PICTURE`, `CLINICHOURS`, `DAILYLIMIT`, `RATE`, `STATUS`) VALUES
+(1, 4, 'Fonso &#34;aka&#34; Sulbad', 'Pacres', '', '09333571095', 'pacres@gmail.comm', '', '', '', 'healer_4.jpg', 'Everyday (13:00 - 21:00)', 0, '0.0', 'ACTIVE'),
+(2, 5, 'Korean Healer', 'Pacres Inc', '', '09123456789', 'spot@yahoo.com', '', '', '', 'face.jpg', '', 0, '0.0', 'ACTIVE'),
+(3, 7, 'Portonatu Aka Natu', 'Natu', '', '09888872134', 'natu@gmail.com', '', '', '', 'healer_7.jpg', 'Monday, Tuesday, Wednesday, Thursday, Friday (01:01 - 13:00)', 5, '1.0', 'ACTIVE');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inquiries`
+--
+
+CREATE TABLE IF NOT EXISTS `inquiries` (
+  `INQUIRY_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) NOT NULL,
+  `EMAIL` varchar(50) NOT NULL,
+  `REQUEST` varchar(1000) NOT NULL,
+  `ADDED_AT` varchar(20) NOT NULL,
+  `STATUS` varchar(20) NOT NULL DEFAULT 'ACTIVE',
+  PRIMARY KEY (`INQUIRY_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `like`
+--
+
+CREATE TABLE IF NOT EXISTS `like` (
+  `LIKE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LABEL` varchar(15) NOT NULL,
+  `LABEL_ID` int(11) NOT NULL,
+  `LIKER_ID` int(11) NOT NULL,
+  `DATELIKED` varchar(20) NOT NULL,
+  PRIMARY KEY (`LIKE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE IF NOT EXISTS `notification` (
+  `NOTIF_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOTIF_OWNER` int(11) NOT NULL,
+  `TYPE` varchar(15) NOT NULL,
+  `TYPE_ID` int(11) NOT NULL,
+  `NOTIFDATE` varchar(20) NOT NULL,
+  `STATUS` varchar(15) NOT NULL DEFAULT 'ACTIVE',
+  PRIMARY KEY (`NOTIF_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`NOTIF_ID`, `NOTIF_OWNER`, `TYPE`, `TYPE_ID`, `NOTIFDATE`, `STATUS`) VALUES
+(3, 7, 'booking', 3, '2016-08-31 03:54:40', 'ACTIVE');
 
 -- --------------------------------------------------------
 
@@ -222,16 +319,17 @@ CREATE TABLE IF NOT EXISTS `product` (
   `STATUS` varchar(20) NOT NULL DEFAULT 'ACTIVE',
   `PICTURE` varchar(60) NOT NULL,
   PRIMARY KEY (`PRODUCT_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`PRODUCT_ID`, `PRODTYPE_ID`, `ACCT_ID`, `DESCRIPTION`, `RATE`, `NAME`, `QUANTITY`, `PRICE`, `UNIT`, `STATUS`, `PICTURE`) VALUES
-(1, 2, 13, 'This is the best capsule in my traditional medicines. You sh', '5.0', 'Albatroz Capsule', 100, '12.00', 0, 'INACTIVE', '13_1.png'),
-(2, 1, 13, 'Mao ni ang ointment nga makapaayo sa sakit sa lawas.', '3.3', 'Tanini ointment', 0, '84.00', 0, 'ACTIVE', 'product_13Tanini ointment.jpg'),
-(3, 1, 13, 'This ointment is made from Coca Cola', '4.1', 'Coca Ointment', 0, '938.00', 0, 'ACTIVE', 'product_13Coca Ointment.jpg');
+(1, 1, 4, 'Prevent Cancer\r\nPrevent Kidney Failure\r\nPrevent Heart Failur', '0.0', 'Spirulina Capsule', 100, '250.00', 0, 'ACTIVE', 'product_4Spirulina Capsule.jpg'),
+(2, 2, 4, 'This ointment is compose  of several kinds of leave that rel', '0.0', 'Natural  Ointment ', 200, '150.00', 0, 'ACTIVE', 'product_4Natural  Ointment .jpg'),
+(3, 2, 7, 'Sa mga Wala pa kasuway sa mga Ane.na bag.o haplas para sa in', '0.0', 'Herbal Haplas', 20, '150.00', 0, 'ACTIVE', 'product_7Herbal Haplas.jpg'),
+(4, 1, 7, 'Mga prevent ne sa tanang sakit busa palit na', '1.0', 'Moringa', 15, '150.00', 0, 'ACTIVE', 'product_7Moringa.jpg');
 
 -- --------------------------------------------------------
 
@@ -250,8 +348,32 @@ CREATE TABLE IF NOT EXISTS `product_type` (
 --
 
 INSERT INTO `product_type` (`PRODTYPE_ID`, `PRODTYPE`) VALUES
-(1, 'Ointment'),
-(2, 'Capsule');
+(1, 'Internal'),
+(2, 'External');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reaction`
+--
+
+CREATE TABLE IF NOT EXISTS `reaction` (
+  `LIKE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LABEL` varchar(15) NOT NULL,
+  `LABEL_ID` int(11) NOT NULL,
+  `LIKER_ID` int(11) NOT NULL,
+  `DATELIKED` varchar(20) NOT NULL,
+  PRIMARY KEY (`LIKE_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `reaction`
+--
+
+INSERT INTO `reaction` (`LIKE_ID`, `LABEL`, `LABEL_ID`, `LIKER_ID`, `DATELIKED`) VALUES
+(5, 'service', 6, 6, '2016-08-31 04:17:26'),
+(6, 'healer', 7, 6, '2016-08-31 04:18:25'),
+(7, 'product', 4, 6, '2016-08-31 04:19:01');
 
 -- --------------------------------------------------------
 
@@ -265,6 +387,25 @@ CREATE TABLE IF NOT EXISTS `request` (
   `EMAIL` varchar(30) NOT NULL,
   `MESSAGE` varchar(500) NOT NULL,
   PRIMARY KEY (`REQUEST_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `RESERVE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CLIENT_ID` int(11) NOT NULL,
+  `HEALER_ID` int(11) NOT NULL,
+  `PRODUCT_ID` int(11) NOT NULL,
+  `PROD_QTY` int(11) NOT NULL,
+  `PRICE` decimal(10,2) NOT NULL,
+  `DATEADDED` varchar(20) NOT NULL,
+  `STATUS` varchar(15) NOT NULL DEFAULT 'ACTIVE',
+  `DATECONFIRMED` varchar(20) NOT NULL,
+  PRIMARY KEY (`RESERVE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -284,22 +425,19 @@ CREATE TABLE IF NOT EXISTS `service` (
   `PICTURE` varchar(60) NOT NULL,
   `RATE` decimal(5,1) NOT NULL,
   PRIMARY KEY (`SERVICE_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`SERVICE_ID`, `SRVCTYPE_ID`, `ACCT_ID`, `NAME`, `DESCRIPTION`, `PRICE`, `STATUS`, `PICTURE`, `RATE`) VALUES
-(1, 1, 14, 'Accupuncture', 'Nindot jud kaayo\r\n\r\nDili ka mag mahay.\r\n\r\nTry na.\r\n\r\n\r\n\r\n\r\nTag 500 ra kada oras.', '500.00', 'ACTIVE', '14_1.png', '3.0'),
-(2, 2, 14, 'Hilot hilot', 'Try mo ani. Maka nindot sa lawas. Mawa imong mga pamaol ug sakit sakit sa lawas. Dili mo magmahay. Affordable pa jud. Tag 350 ra.', '400.00', 'ACTIVE', '14_2.png', '1.1'),
-(3, 2, 14, 'Hilot diri', 'Epektibo jud kaayo ni. Proven and tested.', '239.00', 'ACTIVE', '14service_14Hilot diri.jpg', '2.3'),
-(4, 2, 14, 'the new hilot', 'Mao ni ang bag o na pamaagi sa pag hilot.', '239.00', 'ACTIVE', 'service_14the new hilot.jpg', '3.5'),
-(5, 1, 14, 'tusok tusok ni bai', 'Ang pinaka nindot nga pamaagi sa pag accupuncture ania na.', '847.00', 'ACTIVE', 'service_14tusok tusok ni bai.png', '5.0'),
-(6, 2, 14, 'New hilot', 'Mao na ang usa sa mga pinaka nindot na hilot sa tibuok Cube.', '943.00', 'ACTIVE', 'service_14New hilot.jpg', '3.0'),
-(7, 2, 13, 'THis is hilot', 'Nindot ni kay maka relax jud ka.', '843.00', 'ACTIVE', 'service_13THis is hilot.jpg', '4.9'),
-(8, 1, 13, 'acCUTEpuncture', 'Mao ni ang cute way sa pag tusok.', '323.00', 'ACTIVE', 'service_13acCUTEpuncture.jpg', '5.0'),
-(9, 2, 13, 'hilot na ni', 'Mao ni ang hilot nga maka pa bayaw nimo sa Langit.', '69.00', 'ACTIVE', 'service_13hilot na ni.jpg', '3.1');
+(1, 2, 4, 'Facial Gua Sha', 'this method use by the Chinese to stay young and fresh', '850.00', 'ACTIVE', 'service_4Facial Gua Sha.jpg', '0.0'),
+(2, 2, 4, 'Back Gua Sha', 'To make your circulate your blood to make you stronger', '1200.00', 'ACTIVE', 'service_4Back Gua Sha.jpg', '0.0'),
+(3, 3, 4, 'Acupressure Therapy', 'Acupressure unclogs the body''s built up energy in the meridian pathways while triggering the release of muscular tension and blood flow. This can help to restore the body to its equilibrium, while also working to relieve a range of physical and emotional ailments.', '1500.00', 'ACTIVE', 'service_4Acupressure Therapy.jpg', '0.0'),
+(4, 1, 4, 'Tui Na', 'is a form of Chinese manipulative therapy often used in conjunction with acupuncture, moxibustion, fire cupping, Chinese herbalism, t&#39;ai chi, and qigong.', '1200.00', 'ACTIVE', 'service_4Tui Na.jpg', '0.0'),
+(5, 1, 4, 'moxibustion', 'the burning of moxa on or near a person&#39;s skin as a counterirritant.', '2500.00', 'ACTIVE', 'service_4moxibustion.jpg', '0.0'),
+(6, 5, 7, 'Hiwaga', 'Kane ang kinakaraan na pama.agi sa atong nasud og Barato ', '80.00', 'ACTIVE', 'service_7Hiwaga.jpg', '1.0');
 
 -- --------------------------------------------------------
 
@@ -311,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `service_type` (
   `SRVCTYPE_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SRVCTYPE` varchar(30) NOT NULL,
   PRIMARY KEY (`SRVCTYPE_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `service_type`
@@ -319,7 +457,10 @@ CREATE TABLE IF NOT EXISTS `service_type` (
 
 INSERT INTO `service_type` (`SRVCTYPE_ID`, `SRVCTYPE`) VALUES
 (1, 'Accupuncture'),
-(2, 'Hilot');
+(2, 'Gua Sha'),
+(3, 'Acupressure'),
+(4, 'Auricular Therapy'),
+(5, 'Hilot');
 
 -- --------------------------------------------------------
 

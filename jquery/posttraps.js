@@ -8,14 +8,14 @@ var point = new RegExp('[.]');
 var nonword = new RegExp('\W');
 
 function checkSubmitValidity() {
-	
-	if($('#nosMessage').text() != "" || $('#descriptionMessage').text() != "" || $('#priceMessage').text() != "" || $('#typeMessage').text() != "" || $('#pictureMessage').text() != "" || $('input[name="servicename"]').val() == "" || $('textarea[name="description"]').val() == "" || $('input[name="price"]').val() == "" || $('select[name="type"]').val() == "") {
+
+	if($('#nosMessage').text() != "" || $('#descriptionMessage').text() != "" || $('#priceMessage').text() != "" || $('#typeMessage').text() != "" || $('#pictureMessage').text() != "" || $('#quantityMessage').text() != "" || $('input[name="servicename"]').val() == "" || $('textarea[name="description"]').val() == "" || $('input[name="price"]').val() == "" || $('select[name="type"]').val() == "" || $('input[name="quantity"]').val() == "") {
 		$('#submit').attr('disabled', 'disabled');
 	}
 	else {
 		$('#submit').removeAttr('disabled');
 	}
-	
+
 }
 
 function checkLength(ss, message, len) {
@@ -26,7 +26,7 @@ function checkLength(ss, message, len) {
 		else {
 			message="Atleast " +len+ " characters";
 		}
-		
+
 	}
 	return message;
 }
@@ -56,13 +56,32 @@ function checkMatchAngleBrace(ss, message) {
 	return message;
 }
 
-function checkFirstPoint(ss, message, len) {
-	if(ss.substring(0, len).match(point)) {
-		if(len>1) {
-			message = "No decimal point on the first " +len+ " place of the digits";
+function checkFirstPoint(ss, message, len, eltype) {
+	if(eltype == 'qty') {
+		if(ss.match(point)) {
+			message = "Whole number only";
+		}
+	}
+	else if(eltype == 'price') {
+		if(ss.substring(0, len).match(point)) {
+			if(len>1) {
+				message = "No decimal point on the first " +len+ " place of the digits";
+			}
+			else {
+				message = "No centavos";
+			}
+		}
+	}
+	return message;
+}
+
+function checkMin(ss, message) {
+	if(ss<1) {
+		if(message!="") {
+			message+= " and only 1 is the minimum value";
 		}
 		else {
-			message = "No centavos";
+			message = "Only 1 is the minium value";
 		}
 	}
 	return message;
@@ -70,7 +89,7 @@ function checkFirstPoint(ss, message, len) {
 
 function checkIfImage(ss, message) {
 	var ext = ss.split(".");
-	ext = ext[ext.length-1].toLowerCase();      
+	ext = ext[ext.length-1].toLowerCase();
 	var arrayExtensions = ["jpg" , "jpeg", "png", "bmp", "gif"];
 	if (arrayExtensions.lastIndexOf(ext) == -1) {
 		message = "Upload image only";
@@ -92,16 +111,16 @@ $('input[type="submit"]').ready(function() {
 	checkSubmitValidity();
 });
 
-$('input[name="servicename"]').keydown(function() {
-	
+$('input[name="servicename"]').keyup(function() {
+
 	var inputVal = $(this).val();
-	
+
 	function checkValidity(ss) {
-		
+
 		var message = "";
-		
+
 		if(ss != "") {
-			
+
 			message=checkLength(ss, message, 6);
 			message=checkMatchAngleBrace(ss, message);
 			message=checkFirstSpace(ss, message, 1);
@@ -109,29 +128,29 @@ $('input[name="servicename"]').keydown(function() {
 		else {
 			message = "Enter the name of service";
 		}
-		
+
 		if(message!="") {
 			message+=" please!";
 		}
-		
+
 		return message;
 	}
-	
+
 	$('#nosMessage').text(checkValidity(inputVal));
 	checkSubmitValidity();
-	
+
 });
 
-$('input[name="productname"]').keydown(function() {
-	
+$('input[name="productname"]').keyup(function() {
+
 	var inputVal = $(this).val();
-	
+
 	function checkValidity(ss) {
-		
+
 		var message = "";
-		
+
 		if(ss != "") {
-			
+
 			message=checkLength(ss, message, 6);
 			message=checkMatchAngleBrace(ss, message);
 			message=checkFirstSpace(ss, message, 1);
@@ -139,27 +158,27 @@ $('input[name="productname"]').keydown(function() {
 		else {
 			message = "Enter the name of service";
 		}
-		
+
 		if(message!="") {
 			message+=" please!";
 		}
-		
+
 		return message;
 	}
-	
+
 	$('#nosMessage').text(checkValidity(inputVal));
 	checkSubmitValidity();
-	
+
 });
 
-$('textarea[name="description"]').keydown(function() {
-	
+$('textarea[name="description"]').keyup(function() {
+
 	var inpuVal = $(this).val();
-	
+
 	function checkValidity(ss) {
-		
+
 		var message = "";
-		
+
 		if(ss != "") {
 			message=checkLength(ss, message, 20);
 			message=checkMatchAngleBrace(ss, message);
@@ -168,46 +187,75 @@ $('textarea[name="description"]').keydown(function() {
 		else {
 			message = "Enter the service description";
 		}
-		
+
 		if(message!="") {
 			message+=" please!";
 		}
-		
+
 		return message;
-		
+
 	}
-	
+
 	$('#descriptionMessage').text(checkValidity(inpuVal));
 	checkSubmitValidity();
-	
+
 });
 
-$('input[name="price"]').keydown(function() {
-	
+$('input[name="price"]').keyup(function() {
+
 	var inpuVal = $(this).val();
-	
+
 	function checkValidty(ss) {
-		
+
 		var message = "";
-		
+
 		if(ss!="") {
-			message = checkFirstPoint(ss, message, 1);
+			message = checkFirstPoint(ss, message, 1, 'price');
 		}
 		else {
 			message = "Enter the price";
 		}
-		
+
 		if(message!="") {
 			message+=" please!";
 		}
-		
+
 		return message;
-		
+
 	}
-	
+
 	$('#priceMessage').text(checkValidty(inpuVal));
 	checkSubmitValidity();
-	
+
+});
+
+$('input[name="quantity"]').keyup(function() {
+
+	var inpuVal = $(this).val();
+
+	function checkValidty(ss) {
+
+		var message = "";
+
+		if(ss!="") {
+			message = checkFirstPoint(ss, message, 1, 'qty');
+			message = checkMin(ss, message);
+		}
+		else {
+			message = "Enter the quantity";
+		}
+
+		if(message!="") {
+			message+=" please!";
+		}
+
+		return message;
+
+	}
+
+	$('#quantityMessage').text(checkValidty(inpuVal));
+	checkSubmitValidity();
+
 });
 
 $('select[name="type"]').select(function() {
@@ -236,61 +284,61 @@ $('select[name="type"]').select(function() {
 	});
 	$('#typeMessage').text(checkValidity(inputVal));
 	checkSubmitValidity();
-	
+
 });
 
-$('input[name="picture"]').keydown(function() {
-	
+$('input[name="picture"]').keyup(function() {
+
 	var inputVal = $(this).val();
-	
+
 	function checkValidity(ss) {
-		
+
 		var message = "";
-		
+
 		if(ss!=null) {
 			message=checkIfImage(ss, message);
 		}
 		else {
 			message = "Upload image";
 		}
-		
+
 		if(message!="") {
 			message+=" please!";
 		}
-		
+
 		return message;
-		
+
 	}
-	
+
 	$('#pictureMessage').text(checkValidity(inputVal));
 	checkSubmitValidity();
-	
+
 });
 
 $('input[name="picture"]').change(function() {
-	
+
 	var inputVal = $(this).val();
-	
+
 	function checkValidity(ss) {
-		
+
 		var message = "";
-		
+
 		if(ss!=null) {
 			message=checkIfImage(ss, message);
 		}
 		else {
 			message = "Upload image";
 		}
-		
+
 		if(message!="") {
 			message+=" please!";
 		}
-		
+
 		return message;
-		
+
 	}
-	
+
 	$('#pictureMessage').text(checkValidity(inputVal));
 	checkSubmitValidity();
-	
+
 });

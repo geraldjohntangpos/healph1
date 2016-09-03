@@ -1,34 +1,38 @@
 //content of homePage
 
 .findHealer{
-    margin-top: 150px;
-    text-align: center;
+        margin-top: 83px;
+        text-align: center;
 
-    h1{
-        color: #5f992c;
-        font-size: 48px;
-    }
-
-    p{
-        color: darkgreen;
-        font-size: 28px;
-    }
-
-    .btn-danger{
-        background-color: #1db725;
-        border: none;
-        height: 40px;
-        width: auto;
-        margin-top: 12px;
-
-        a{
-            color: white;
+        h1{
+                color: #57BF13;
+                font-size: 80px;
+                margin: 230px 0 20px;
         }
 
-        @media screen and (max-width: $screen-xs-max) {
-            margin-bottom: 20px;
+        p{
+                color: darkgreen;
+                font-size: 28px;
+                font-style: italic;
         }
-    }
+
+        .btn-danger{
+                background-color: #1db725;
+                border: none;
+                height: 40px;
+                width: auto;
+                margin-top: 12px;
+                margin-bottom: 250px;
+
+
+                a{
+                        color: white;
+                }
+
+                @media screen and (max-width: $screen-xs-max) {
+                        margin-bottom: 20px;
+                }
+        }
 
 
 }

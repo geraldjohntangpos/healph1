@@ -1,17 +1,47 @@
 .addHealer{
-     h1{
-        color:antiquewhite;
-        margin-top: -81px;
+         h1{
+                color:antiquewhite;
+                margin-top: -81px;
+        }
+
+        .btn-danger{
+                float: right;
+        }
+
+        .back2{
+                img{
+                        float: left;
+                        margin-top: 10px;
+                }
+        }
+
+}
+
+#registerForm{
+    margin-top: 10px;
+
+    h1{
+        color: #5f992c;
+        font-size: 35px;
+        margin: 10px 0 20px;
+    }
+    .form{
+        margin-top: 10px;
+    }
+
+    .wrapForm{
+        border: 1px solid #ccc;
+        padding: 30px;
+        border-radius: 10px;
     }
 
     .btn-danger{
-        float: right;
+        margin-bottom: 20px;
     }
 
-    .back2{
-        img{
-            float: left;
-            margin-top: 10px;
+    p{
+        a{
+            color: black;
         }
     }
 

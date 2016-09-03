@@ -44,7 +44,20 @@
 
 }
 
+#tableList {
+    margin-top: 100px;
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+
+    h1{
+        color: black;
+    }
+}
+
 .comments{
+    margin-bottom: 40px;
     h1{
         text-align: center;
         color: green;
@@ -69,3 +82,50 @@
 
 }
 
+.like{
+    color: green;
+}
+
+.appointment{
+   color: green;
+   position: absolute;
+   right: 212px;
+    text-decoration: underline;
+
+
+}
+
+.bell{
+  margin: 37px 80px 0;
+  font-size: 25px;
+
+}
+
+            .badge-notify{
+             background:red;
+             position:absolute;
+             top:0px;
+            }
+
+
+#allHealers{
+    margin-top: 150px;
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 133px;
+
+    h1{
+        color: black;
+    }
+}
+
+.offered{
+    span{
+        padding-left: 280px;
+
+        a{
+            color: green;
+        }
+    }
+}

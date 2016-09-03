@@ -7,6 +7,7 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 @import url(../../bower_components/font-awesome/css/font-awesome.min.css);
 @import url(../../bower_components/wow/css/libs/animate.css);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,100italic,100,500,500italic,700,700italic,900,900italic);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5816,7 +5817,8 @@ html {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 0 !important; }
+  padding: 0 !important;
+  font-family: 'Roboto', sans-serif; }
   body .btn-danger,
   html .btn-danger {
     background-color: darkgreen;
@@ -5827,19 +5829,29 @@ html {
   html a {
     color: white; }
 
-body {
-  background: url("../images/BG.jpg") no-repeat center fixed;
-  background-size: cover;
-  height: 100%; }
+.findHealer {
+  background: url("../images/BG.jpg") no-repeat center center;
+  background-size: cover; }
+
+.navbar {
+  background: url("../images/logo.png") no-repeat center left #88D843;
+  background: cover;
+  float: right; }
+  @media screen and (max-width: 767px) {
+    .navbar {
+      background: none; } }
+  .navbar li:first-child {
+    padding: 0 0 10px 240px; }
 
 .message {
-  margin-top: -15px;
+  margin: 3px 0 -1px;
   color: #f00;
   min-height: 18px;
-  height: 18px; }
+  height: 18px;
+  font-size: 12px; }
 
 .navbar-inverse {
-  background-color: transparent;
+  background-color: #88D843;
   border: none; }
   .navbar-inverse .navbar-nav ul {
     float: right; }
@@ -5870,21 +5882,105 @@ body {
       font-size: 20px;
       margin-top: 40px; } }
 
-@media screen and (max-width: 767px) {
-  .navbar-brand > img {
-    display: block;
-    height: 50px;
-    width: 100px; } }
+.bgMenu {
+  background-color: #88D843;
+  width: 100%;
+  margin-bottom: 95px; }
+
+.navbar-brand {
+  padding: 5px 15px; }
+  @media screen and (max-width: 767px) {
+    .navbar-brand img {
+      display: block;
+      height: 50px;
+      width: 100px; } }
 
 footer p {
   background-color: darkgreen;
   font-size: 16px;
   text-align: center;
   color: white;
-  padding: 10px 0 10px; }
+  padding: 10px 0 10px;
+  margin-bottom: 0; }
 
 .topUser {
   float: right; }
+
+.tracker {
+  position: fixed;
+  top: 50%;
+  right: 10px;
+  z-index: 500; }
+  .tracker ul li {
+    list-style: none; }
+    .tracker ul li a {
+      width: 20px;
+      height: 20px;
+      background: #ccc;
+      border-radius: 50%;
+      display: block;
+      margin: 0 0 10px;
+      text-indent: -9999px; }
+      .tracker ul li a:active, .tracker ul li a:hover, .tracker ul li a:focus {
+        background-color: red; }
+
+.progress-tracker {
+  position: fixed;
+  top: 40%;
+  right: 10px;
+  z-index: 999999;
+  margin-top: -180px; }
+
+.progress-tracker ul, .constant ul {
+  margin: 10px 8px 0 -30px; }
+
+.constant {
+  z-index: 99999;
+  background: #f85558; }
+
+.progress-tracker.hide {
+  width: 0px; }
+
+.progress-tracker.hide ul li .pt-description,
+.progress-tracker.hide.active ul li .pt-description,
+.progress-tracker.hide.constant ul li.active .pt-description {
+  display: none; }
+
+.progress-tracker ul li {
+  width: 12px;
+  height: 13px;
+  position: relative;
+  background-color: #b73235;
+  border: 1px solid #b73235;
+  margin-bottom: 10px;
+  list-style-type: none;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px; }
+
+.progress-tracker ul li a {
+  width: 100%;
+  height: 100%;
+  display: block; }
+
+.progress-tracker ul li .pt-description {
+  display: none;
+  position: absolute;
+  top: -2px;
+  right: 25px;
+  padding: 3px 8px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: #b73235;
+  white-space: nowrap; }
+
+.progress-tracker ul li.active {
+  background-color: #fff;
+  border-color: #fff; }
+
+.progress-tracker.constant ul li.active .pt-description {
+  display: block; }
 
 /*!
  * Hover.css (http://ianlunn.github.io/Hover/)
@@ -10097,20 +10193,23 @@ footer p {
   height: 25px; }
 
 .findHealer {
-  margin-top: 150px;
+  margin-top: 83px;
   text-align: center; }
   .findHealer h1 {
-    color: #5f992c;
-    font-size: 48px; }
+    color: #57BF13;
+    font-size: 80px;
+    margin: 230px 0 20px; }
   .findHealer p {
     color: darkgreen;
-    font-size: 28px; }
+    font-size: 28px;
+    font-style: italic; }
   .findHealer .btn-danger {
     background-color: #1db725;
     border: none;
     height: 40px;
     width: auto;
-    margin-top: 12px; }
+    margin-top: 12px;
+    margin-bottom: 250px; }
     .findHealer .btn-danger a {
       color: white; }
     @media screen and (max-width: 767px) {
@@ -10118,7 +10217,10 @@ footer p {
         margin-bottom: 20px; } }
 
 #loginForm {
-  margin-top: 200px; }
+  margin-top: 150px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px; }
   #loginForm h1 {
     color: #5f992c; }
   #loginForm .btn-danger {
@@ -10145,25 +10247,59 @@ footer p {
   float: left;
   margin-top: 10px; }
 
+#registerForm {
+  margin-top: 10px; }
+  #registerForm h1 {
+    color: #5f992c;
+    font-size: 35px;
+    margin: 10px 0 20px; }
+  #registerForm .form {
+    margin-top: 10px; }
+  #registerForm .wrapForm {
+    border: 1px solid #ccc;
+    padding: 30px;
+    border-radius: 10px; }
+  #registerForm .btn-danger {
+    margin-bottom: 20px; }
+  #registerForm p a {
+    color: black; }
+
+.trendWrap {
+  background: url("../images/bg.png") no-repeat center center;
+  background-size: cover;
+  height: 300px; }
+
+.navbar-inverse1 {
+  background-color: #88D843;
+  border: none; }
+  .navbar-inverse1 li a {
+    color: #fff;
+    margin: 36px 0 14px;
+    font-size: 20px; }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  background-color: black; }
+
 /* Dropdown Button */
 .dropbtn {
   background-color: transparent;
-  color: white;
-  padding: 23px;
+  color: black;
+  padding: 11px;
   font-size: 23px;
   border: none;
   cursor: pointer; }
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-  background-color: transparents; }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: absolute;
   display: inline-block;
-  left: 360px;
-  top: 18px; }
+  left: -7%;
+  top: 18px;
+  margin-top: 12px; }
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: none; }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -10175,29 +10311,44 @@ footer p {
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
-  display: block; }
+  display: block;
+  z-index: 9999; }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  background-color: #f1f1f1; }
+  background-color: darkgreen; }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
   display: block; }
 
-.trending ul {
-  list-style: none; }
-  .trending ul li {
-    text-align: center;
-    color: darkgreen;
-    font-size: 21px; }
-.trending h1 {
+.trending1 {
+  background: url("../images/bg2.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 80px 0 100px;
   text-align: center;
-  color: #142108;
-  font-weight: bold; }
+  margin-top: -100px; }
+  .trending1 h1 {
+    font-size: 50px;
+    margin-bottom: 32px;
+    color: white; }
+  .trending1 .trending ul {
+    list-style: none;
+    margin-bottom: 50px; }
+    .trending1 .trending ul li {
+      text-align: center;
+      color: white;
+      font-size: 21px; }
+      .trending1 .trending ul li a {
+        color: white; }
+  .trending1 .trending h2 {
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+    padding: 32px; }
 
 @media screen and (max-width: 767px) {
   .trending h1 {
@@ -10230,9 +10381,13 @@ footer p {
   width: 110px;
   height: 80px; }
 
-.searchBox .form-group {
-  margin-bottom: -40px;
-  margin-right: 10px; }
+#productList {
+  margin: 150px 0 170px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px; }
+  #productList h1 {
+    color: black; }
 
 .healerPage img {
   margin: 45px 0 20px; }
@@ -10254,18 +10409,61 @@ footer p {
   .healerPage .btn-danger a {
     color: white; }
 
-.comments h1 {
-  text-align: center;
-  color: green;
-  margin-top: 68px; }
-.comments ul {
-  text-align: center;
-  list-style: none; }
-  .comments ul li {
+#tableList {
+  margin-top: 100px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 50px; }
+  #tableList h1 {
     color: black; }
-@media screen and (max-width: 767px) {
-  .comments .btn-danger {
-    margin-bottom: 20px; } }
+
+.comments {
+  margin-bottom: 40px; }
+  .comments h1 {
+    text-align: center;
+    color: green;
+    margin-top: 68px; }
+  .comments ul {
+    text-align: center;
+    list-style: none; }
+    .comments ul li {
+      color: black; }
+  @media screen and (max-width: 767px) {
+    .comments .btn-danger {
+      margin-bottom: 20px; } }
+
+.like {
+  color: green; }
+
+.appointment {
+  color: green;
+  position: absolute;
+  right: 212px;
+  text-decoration: underline; }
+
+.bell {
+  margin: 37px 80px 0;
+  font-size: 25px; }
+
+.badge-notify {
+  background: red;
+  position: absolute;
+  top: 0px; }
+
+#allHealers {
+  margin-top: 150px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 133px; }
+  #allHealers h1 {
+    color: black; }
+
+.offered span {
+  padding-left: 280px; }
+  .offered span a {
+    color: green; }
 
 .method h1 {
   text-align: center;
@@ -10302,39 +10500,58 @@ footer p {
 
 .about h1 {
   color: #5f992c;
-  font-size: 40px;
+  font-size: 60px;
   text-align: center;
-  margin: 60px 0 60px; }
+  margin: 200px 0 80px; }
 .about p {
-  color: white;
+  color: black;
   font-size: 24px;
   text-align: center;
-  background: url("../images/bg.png") no-repeat center center;
-  background-size: cover; }
+  margin-bottom: 200px; }
 
-.contactUs h1 {
-  font-size: 20px;
-  color: forestgreen;
-  text-align: center;
-  margin-top: 60px; }
-.contactUs p {
-  font-size: 20px;
-  color: #1db725;
-  text-align: center;
-  margin-bottom: 60px; }
-.contactUs .btn-danger {
-  height: 50px;
-  width: 100px;
-  border: 0;
-  background-color: #1db725; }
-  @media screen and (max-width: 767px) {
-    .contactUs .btn-danger {
-      margin-bottom: 20px; } }
+.contactUs {
+  background-color: #68BD12; }
+  .contactUs h1 {
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    margin-top: 60px; }
+  .contactUs p {
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    margin-bottom: 9px; }
+  .contactUs .btn-danger {
+    height: 50px;
+    width: 100px;
+    border: 0;
+    background-color: #1db725;
+    margin-bottom: 40px; }
+    @media screen and (max-width: 767px) {
+      .contactUs .btn-danger {
+        margin-bottom: 20px; } }
+  .contactUs ul {
+    text-align: center;
+    list-style: none; }
+    .contactUs ul li {
+      padding: 16px;
+      display: inline-block; }
+      @media screen and (max-width: 767px) {
+        .contactUs ul li {
+          margin-right: 0;
+          margin-left: -26px; } }
+  .contactUs .form-group:first-child {
+    margin-top: 5px; }
 
+.admin .adminWrapper {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 100px 0 93px;
+  padding: 32px; }
 .admin h1 {
   text-align: center;
   font-size: 40px;
-  color: antiquewhite;
+  color: black;
   margin-bottom: 50px; }
 .admin .btn-danger {
   height: auto;
@@ -10345,6 +10562,18 @@ footer p {
   .admin .btn-danger p {
     color: white;
     font-size: 24px; }
+
+#updateHealer {
+  margin: 135px 0 40px; }
+  #updateHealer h1 {
+    color: black; }
+
+#addHealer {
+  margin-top: 13px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px; }
 
 .deleteHealer h1 {
   text-align: center;
@@ -10359,6 +10588,15 @@ footer p {
   .deleteHealer .listHealer label span {
     font-size: 24px;
     color: forestgreen; }
+
+#viewHealerList {
+  margin-top: 159px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 153px; }
+  #viewHealerList h1 {
+    color: black; }
 
 .healer h1 {
   text-align: center;
@@ -10397,6 +10635,8 @@ footer p {
   color: #1db725;
   text-align: center;
   margin-bottom: 50px; }
+.view .wrapView {
+  margin-bottom: 105px; }
 .view .backView img {
   margin-top: 30px;
   margin-bottom: 20px; }
@@ -10414,5 +10654,34 @@ footer p {
     font-size: 16px; }
   .service-product img {
     margin: 20px 0 20px; }
+
+.badge-notify {
+  background: red;
+  position: absolute;
+  top: 4px;
+  left: -4px; }
+
+.wrapActions {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin: 100px 0 99px; }
+
+.postProduct {
+  margin: 50px 0 50px;
+  border: 1px solid #ccc;
+  border-radius: 20px; }
+
+.postProductForm {
+  margin-top: 150px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 100px; }
+
+#postProductForm {
+  margin: 150px 0 50px; }
+  #postProductForm h1 {
+    color: black;
+    margin-bottom: 50px; }
 
 /*# sourceMappingURL=main.css.map */

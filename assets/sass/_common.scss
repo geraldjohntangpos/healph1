@@ -1,124 +1,264 @@
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,100italic,100,500,500italic,700,700italic,900,900italic);
+
 body,
 html {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 0 !important;
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+				padding: 0 !important;
+				font-family: 'Roboto', sans-serif;
 
-    .btn-danger{
-        background-color: darkgreen;
-        border: 0;
-        height: 50px;
-        width: 100px;
-    }
+				.btn-danger{
+								background-color: darkgreen;
+								border: 0;
+								height: 50px;
+								width: 100px;
+				}
 
-    a{
-            color: white;
-        }
+				a{
+												color: white;
+								}
 
-} 
+}
 
-body {
-    background: url("../images/BG.jpg") no-repeat center fixed;
-    background-size: cover;
-    height: 100%;
+
+.findHealer {
+				background: url("../images/BG.jpg") no-repeat center center;
+				background-size: cover;
+
+}
+
+
+
+.navbar{
+		background: url("../images/logo.png") no-repeat center left #88D843;
+		background: cover;
+		float: right;
+
+		@media screen and (max-width: $screen-xs-max) {
+						background: none;
+		}
+
+		li{
+				&:first-child{
+						padding: 0 0 10px 240px;
+				}
+
+		}
 }
 
 //message
-.message{	
-	margin-top: -15px;
-	color: #f00;
-	min-height: 18px;
-	height: 18px;
+.message{
+		margin: 3px 0 -1px;
+		color: #f00;
+		min-height: 18px;
+		height: 18px;
+		font-size: 12px;
 }
 
 //navbar menu
 .navbar-inverse {
-    background-color: transparent;
-    border: none;
-    //navbar content
-    .navbar-nav {
-        ul{
-					float: right;
-         @media screen and (max-width: $screen-xs-max) {
-            text-align: center;
-            }
+				background-color: #88D843;
+				border: none;
+				//navbar content
+				.navbar-nav {
+								ul{
+										float: right;
+								 @media screen and (max-width: $screen-xs-max) {
+												text-align: center;
+												}
 
-            li {
-                @media screen and (max-width: $screen-xs-max) {
-                    text-align: center;
-                }
-                a {
+												li {
+																@media screen and (max-width: $screen-xs-max) {
+																				text-align: center;
+																}
+																a {
 
-                }
-            }
-        }
+																}
+												}
+								}
 
-    }
-    .signout {
-        
+				}
+				.signout {
 
-         @media screen and (max-width: $screen-xs-max) {
-            margin-left: 36px;
-            margin-top: -28px;
-        }
-    }
+
+								 @media screen and (max-width: $screen-xs-max) {
+												margin-left: 36px;
+												margin-top: -28px;
+								}
+				}
 }
 
 
 .navbar-collapse.collapse.in {
 
-   @media screen and (max-width: $screen-xs-max) {
-       margin-top: 15px;
-    }
+		 @media screen and (max-width: $screen-xs-max) {
+						 margin-top: 15px;
+				}
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    color: white;
-    font-size: 24px;
-    margin-top: 33px;
-		
-    @media screen and (max-width: $screen-xs-max) {
-        text-align: center;
-        color: green;
-        padding-bottom: 27px;
-        font-size: 20px;
-        margin-top: 40px;
+				color: white;
+				font-size: 24px;
+				margin-top: 33px;
+
+				@media screen and (max-width: $screen-xs-max) {
+								text-align: center;
+								color: green;
+								padding-bottom: 27px;
+								font-size: 20px;
+								margin-top: 40px;
 
 
-    }
+				}
 }
+
+//bgMenu
+.bgMenu{
+		background-color: #88D843;
+		width: 100%;
+		margin-bottom: 95px;
+
+
+}
+
+
+
 
 
 //image mobile
 
-.navbar-brand > img {
-    @media screen and (max-width: $screen-xs-max) {
-        display: block;
-        height: 50px;
-        width: 100px;
-    }
+.navbar-brand{
+		padding: 5px 15px;
+
+
+
+img {
+
+
+		@media screen and (max-width: $screen-xs-max) {
+								display: block;
+								height: 50px;
+								width: 100px;
+				}
+}
 }
 
 
 //footer
 footer{
-		p{
-			background-color: darkgreen;
-			font-size: 16px;
-			text-align: center;
-			color: white;
-			padding: 10px 0 10px;
-			
+				p{
+						background-color: darkgreen;
+						font-size: 16px;
+						text-align: center;
+						color: white;
+						padding: 10px 0 10px;
+						margin-bottom: 0;
+
+				}
 		}
-	}
 
 
 //healerTop
 .topUser{
-	float:right;
+		float:right;
 }
 
-	
+//progress tracker
+.tracker {
+				position: fixed;
+				top: 50%;
+				right: 10px;
+				z-index:500;
+				ul {
+								li {
+												list-style:none;
+												a {
+																width:20px;
+																height:20px;
+																background:#ccc;
+																border-radius:50%;
+																display:block;
+																margin:0 0 10px;
+																text-indent:-9999px;
+
+																&:active, &:hover, &:focus{
+																				background-color:red;
+																}
+												}
+								}
+
+				}
+}
+
+.progress-tracker {
+		position: fixed;
+		top: 40%;
+		right: 10px;
+		z-index: 999999;
+		margin-top: -180px;
+								}
+
+.progress-tracker, .constant{
+
+				ul{
+								margin: 10px 8px 0 -30px;
+				}
+}
+
+.constant{
+				z-index: 99999;
+				background: #f85558;
+
+}
+
+
+.progress-tracker.hide {
+		width: 0px;
+}
+.progress-tracker.hide ul li .pt-description,
+.progress-tracker.hide.active ul li .pt-description,
+.progress-tracker.hide.constant ul li.active .pt-description {
+		display: none;
+}
+.progress-tracker ul li {
+		width: 12px;
+		height: 13px;
+		position: relative;
+		background-color: #b73235;
+		border: 1px solid #b73235;
+		margin-bottom: 10px;
+		list-style-type: none;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+}
+.progress-tracker ul li a {
+		width: 100%;
+		height: 100%;
+		display: block;
+}
+.progress-tracker ul li .pt-description {
+		display: none;
+		position: absolute;
+		top: -2px;
+		right: 25px;
+		padding: 3px 8px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		background-color: #b73235;
+		white-space:nowrap;
+}
+.progress-tracker ul li.active {
+		background-color: #fff;
+		border-color: #fff;
+}
+.progress-tracker.constant ul li.active .pt-description {
+		display: block;
+}
+
+
 
 

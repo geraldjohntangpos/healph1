@@ -7,7 +7,7 @@
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$firstname = filter_var(ucwords(strtolower($_POST['firstname'])), FILTER_SANITIZE_STRING);
-	$lastname = filter_var(ucwords(strtolower($_POST['lastname'])), FILTER_SANITIZE_STRING);;
+	$lastname = filter_var(ucwords(strtolower($_POST['lastname'])), FILTER_SANITIZE_STRING);
 	$emailadd = $_POST['emailadd'];
 	$mobile = $_POST['mobile'];
 	$type = $_POST['type'];

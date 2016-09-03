@@ -1,20 +1,20 @@
 <?php
 
 	include 'connection.php';
-	
+
 	if(isset($_GET['p'])) {
 		$p = $_GET['p'];
-		
+
 		if($p == "deletehealer") {
 			if(isset($_GET['accountid'])) {
 				$accountid = $_GET['accountid'];
-				
-				$sql = "UPDATE account SET STATUS = 'INACTIVE'";
-				
+
+				$sql = "UPDATE account SET STATUS = 'INACTIVE' WHERE ACCT_ID = '$accountid'";
+
 				$delete = $conn->query($sql);
-				
+
 				if($delete) {
-					header('Location: ../adminpages/adminlogin.php?delsuccess');
+					header('Location: ../adminpages/viewhealer.php?delsuccess');
 				}
 				else {
 					header('Location: ../adminpages/adminlogin.php?delfailed');
@@ -27,13 +27,13 @@
 	}
 	else {
 		$sql = "SELECT H.LASTNAME, H.FIRSTNAME, H.HEALER_ID, H.ACCT_ID, A.ACCT_ID, A.STATUS FROM healer as H INNER JOIN account AS A ON H.ACCT_ID = A.ACCT_ID WHERE A.STATUS = 'ACTIVE'";
-		
+
 		$retrieve = $conn->query($sql)->fetchAll();
-		
+
 		if($retrieve) {
 			foreach($retrieve as $row) {
 				$lastname = $row['LASTNAME'];
-a				$firstname = $row['FIRSTNAME'];
+				$firstname = $row['FIRSTNAME'];
 				$healerid = $row['HEALER_ID'];
 				$accountid = $row['ACCT_ID'];
 				?>
@@ -48,5 +48,5 @@ a				$firstname = $row['FIRSTNAME'];
 			}
 		}
 	}
-	
+
 ?>
